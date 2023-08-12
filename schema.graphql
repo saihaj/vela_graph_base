@@ -1,0 +1,495 @@
+type Token @entity {
+  id: ID!
+  name: String!
+  symbol: String!
+  decimals: Int!
+  balances: [TokenBalance!]! @derivedFrom(field: "token")
+  approvals: [TokenApproval!]! @derivedFrom(field: "token")
+}
+
+type Account @entity {
+  id: ID!
+  balances: [TokenBalance!]! @derivedFrom(field: "account")
+  incomingApprovals: [TokenApproval!]! @derivedFrom(field: "spenderAccount")
+  outgoingApprovals: [TokenApproval!]! @derivedFrom(field: "ownerAccount")
+}
+
+type TokenBalance @entity {
+  id: ID!
+  token: Token!
+  account: Account!
+  value: BigDecimal!
+}
+
+type TokenApproval @entity {
+  id: ID!
+  token: Token!
+  ownerAccount: Account!
+  spenderAccount: Account!
+  value: BigDecimal!
+}
+
+type ClosePosition @entity {
+  id: ID!
+  account: String!
+  tokenId: BigInt!
+  isLong: Boolean!
+  posId: BigInt!
+  realisedPnl: BigInt!
+  markPrice: BigInt!
+  positionFee: BigInt!
+  fundingFee: BigInt!
+  borrowFee: BigInt!
+  timestamp: Int!
+  transactionHash: String!
+}
+
+type ConfirmDelayTransaction @entity {
+  id: ID!
+  confirmDelayStatus: Boolean!
+  collateral: BigInt!
+  size: BigInt!
+  feeUsd: BigInt!
+  timestamp: Int!
+  transactionHash: String!
+}
+
+type DecreasePosition @entity {
+  id: ID!
+  account: String!
+  averagePrice: BigInt!
+  collateral: BigInt!
+  positionFee: BigInt!
+  fundingFee: BigInt!
+  borrowFee: BigInt!
+  tokenId: BigInt!
+  isLong: Boolean!
+  markPrice: BigInt!
+  posId: BigInt!
+  realisedPnl: BigInt!
+  size: BigInt!
+  timestamp: Int!
+  transactionHash: String!
+}
+
+type IncreasePosition @entity {
+  id: ID!
+  account: String!
+  averagePrice: BigInt!
+  collateral: BigInt!
+  tokenId: BigInt!
+  isLong: Boolean!
+  feeUsd: BigInt
+  markPrice: BigInt!
+  posId: BigInt!
+  size: BigInt!
+  timestamp: Int!
+  transactionHash: String!
+}
+
+type GlobalInfo @entity {
+  id: ID!
+  tokenId: String!
+  wins: BigInt!
+  losses: BigInt!
+  volume: BigInt!
+  counts: BigInt!
+  fees: BigInt!
+}
+type DailyGlobalInfo @entity {
+  id: ID!
+  timestamp: Int!
+  fees: BigInt!
+  tradeVolume: BigInt!
+  openInterests: BigInt!
+  tradeCounts: Int!
+}
+
+type StrandedUSDCAmount @entity {
+  id: ID!
+  amount: BigInt!
+  fees: BigInt!
+}
+
+type PoolInfo @entity {
+  id: ID!
+  pid1: BigInt!
+  pid2: BigInt!
+  pid3: BigInt!
+}
+
+type Rewarder @entity {
+  id: ID!
+  timestamp: Int!
+  endTimestamp: Int!
+  rewardPerSec: BigInt!
+  info: RewardInfo! @belongsTo
+}
+
+type RewardInfo @entity {
+  id: ID!
+  pId: BigInt!
+  startTimestamp: Int!
+  address: String!
+  rewarders: [Rewarder!]! @derivedFrom(field: "info")
+}
+
+type RewardStat @entity {
+  id: ID!
+  rewarder: String!
+  account: String!
+  amount: BigInt!
+}
+
+type PlatformFee @entity {
+  id: ID!
+  account: String!
+  amount: BigInt!
+  trader: String!
+  createdAt: Int!
+  trasactionHash: String!
+}
+
+type ReferFee @entity {
+  id: ID!
+  account: String!
+  amount: BigInt!
+  trader: String!
+  rebate: BigInt!
+  createdAt: Int!
+  trasactionHash: String!
+}
+
+type UserAirdropStat @entity {
+  id: ID!
+  account: String!
+  velaAmount: BigInt!
+  isBluePill: Boolean!
+  timestamp: Int!
+}
+
+type UserVLPRewardStat @entity {
+  id: ID!
+  account: String!
+  amount: BigInt!
+  timestamp: Int!
+}
+
+type UserStakingStat @entity {
+  id: ID!
+  account: String!
+  isHyper: Boolean!
+  tier: Int!
+  usdcAmount: BigInt!
+  vlpAmount: BigInt!
+  timestamp: Int!
+}
+
+type UserStakingTier @entity {
+  id: ID!
+  account: String!
+  tier: Int!
+  usdcCommitted: BigInt!
+  vlpCommitted: BigInt!
+}
+
+type HyperStakingTier @entity {
+  id: ID!
+  startVLP: BigInt!
+  endVLP: BigInt!
+  usdcCommitted: BigInt!
+  vlpCommitted: BigInt!
+  tier: Int!
+  velaReward: BigInt!
+}
+
+type VestingStat @entity {
+  id: ID!
+  account: String!
+  claimedAmount: BigInt!
+  lockedAmount: BigInt!
+}
+
+type BaseUserInfo @entity {
+  id: ID!
+  baseRatio: BigInt!
+  baseVela: BigInt!
+  baseVLP: BigInt!
+  minimumVLP: BigInt!
+  mintedVLP: BigInt!
+}
+
+type BaseGlobalInfo @entity {
+  id: ID!
+  accumulatedSUM: BigInt!
+  totalVLP: BigInt!
+  totalUSDC: BigInt!
+  totalStakes: BigInt!
+  totalUnstakes: BigInt! 
+  hyper_ended: Boolean!
+}
+
+type OpenInterest @entity {
+  id: ID!
+  tokenId: String!
+  amount: BigInt!
+}
+
+type Mint @entity {
+  id: ID!
+  account: String!
+  usdAmount: BigInt!
+  timestamp: Int!
+  token: String!
+  vlpAmount: BigInt!
+}
+
+type Redeem @entity {
+  id: ID!
+  account: String!
+  usdAmount: BigInt!
+  timestamp: Int!
+  token: String!
+  vlpAmount: BigInt!
+}
+
+type HourlyTrade @entity {
+  id: ID!
+  account: String!
+  collateral: BigInt!
+  fees: BigInt!
+  leverage: BigInt!
+  lossCount: Int!
+  profitLoss: BigInt!
+  tradeCount: Int!
+  tradeVolume: BigInt!
+  timestamp: Int!
+  winCount: Int!
+}
+
+type DailyTrade @entity {
+  id: ID!
+  account: String!
+  collateral: BigInt!
+  fees: BigInt!
+  leverage: BigInt!
+  lossCount: Int!
+  profitLoss: BigInt!
+  tradeCount: Int!
+  tradeVolume: BigInt!
+  timestamp: Int!
+  winCount: Int!
+}
+
+type WeeklyTrade @entity {
+  id: ID!
+  account: String!
+  collateral: BigInt!
+  fees: BigInt!
+  leverage: BigInt!
+  lossCount: Int!
+  profitLoss: BigInt!
+  tradeCount: Int!
+  tradeVolume: BigInt!
+  timestamp: Int!
+  winCount: Int!
+}
+
+type MonthlyTrade @entity {
+  id: ID!
+  account: String!
+  collateral: BigInt!
+  fees: BigInt!
+  leverage: BigInt!
+  lossCount: Int!
+  profitLoss: BigInt!
+  tradeCount: Int!
+  tradeVolume: BigInt!
+  timestamp: Int!
+  winCount: Int!
+}
+
+type AllTrade @entity {
+  id: ID!
+  account: String!
+  collateral: BigInt!
+  fees: BigInt!
+  leverage: BigInt!
+  lossCount: Int!
+  profitLoss: BigInt!
+  tradeCount: Int!
+  tradeVolume: BigInt!
+  winCount: Int!
+}
+
+type Deposit @entity {
+  id: ID!
+  account: String!
+  amount: BigInt!
+  createdAt: Int!
+  trasactionHash: String!
+}
+
+type Withdraw @entity {
+  id: ID!
+  account: String!
+  amount: BigInt!
+  createdAt: Int!
+  trasactionHash: String!
+}
+
+type TotalInfo @entity {
+  id: ID!
+  totalDeposits: BigInt!
+  totalWithdraws: BigInt!
+}
+
+type TokenConfig @entity {
+  id: ID!
+  tokenId: BigInt!
+  fundingIndex: BigInt!
+  lastFundingTime: Int!
+}
+
+type NewOrder @entity {
+  id: ID!
+  account: String!
+  tokenId: BigInt!
+  isLong: Boolean!
+  posId: BigInt!
+  positionType: String!
+  orderStatus: String!
+  timestamp: Int!
+  transactionHash: String!
+}
+
+type LiquidatePosition @entity {
+  id: ID!
+  from: String!
+  account: String!
+  tokenId: BigInt!
+  isLong: Boolean!
+  posId: BigInt!
+  realisedPnl: BigInt!
+  markPrice: BigInt!
+  feeUsd: BigInt!
+  timestamp: Int!
+  transactionHash: String!
+}
+
+type TradeVolume @entity {
+  id: ID!
+  account: String!
+  size: BigInt!
+  vusdBalance: BigInt!
+  collateralUsage: BigInt!
+  marginUsage: BigInt!
+  openLongs: BigInt!
+  openShorts: BigInt!
+}
+
+type HourlyVolume @entity {
+  id: ID!
+  amount: BigInt!
+  tokenId: BigInt!
+  timestamp: Int!
+  tradeCounts: Int!
+}
+
+type Volume24H @entity {
+  id: ID!
+  amount: BigInt!
+  tokenId: BigInt!
+  timestamp: Int!
+  tradeCounts: Int!
+}
+
+type Volume @entity {
+  id: ID!
+  tokenId: BigInt!
+  timestamp: Int!
+  amount: BigInt!
+}
+
+type PositionStat @entity {
+  id: ID!
+  account: String!
+  averagePrice: BigInt!
+  collateral: BigInt!
+  closedAt: Int!
+  closeHash: String!
+  createdAt: Int!
+  createHash: String!
+  positionFee: BigInt!
+  fundingFee: BigInt!
+  borrowFee: BigInt!
+  isLong:Boolean!
+  lastUpdateTime: Int!
+  lmtPrice: BigInt!
+  markPrice: BigInt!
+  orderStatus: String!
+  pendingCollateral: BigInt!
+  pendingSize: BigInt!
+  pendingDelayCollateral: BigInt!
+  pendingDelaySize: BigInt!
+  posId: BigInt!
+  positionStatus: String!
+  positionType: String!
+  realisedPnl: BigInt!
+  size: BigInt!
+  totalCollateral: BigInt!
+  totalClosedSize: BigInt!
+  totalIncreasedCollateral: BigInt!
+  maxCollateral: BigInt!
+  totalSize: BigInt!
+  totalROI: BigInt!
+  stpPrice: BigInt!
+  tokenId: BigInt!
+}
+
+type PositionTrigger @entity {
+  id: ID!
+  account: String!
+  tokenId: BigInt!
+  isLong:Boolean!
+  posId: BigInt!
+  status: String!
+  triggers: [Trigger!]! @derivedFrom(field: "order")
+}
+
+type Trigger @entity {
+  id: ID!
+  amountPercent: BigInt!
+  triggerId: Int!
+  createdAt: Int!
+  isTP: Boolean!
+  price: BigInt!
+  status: String!
+  triggeredAmount: BigInt!
+  triggeredAt: Int!
+  order: PositionTrigger! @belongsTo
+}
+
+type UserTradeStat @entity {
+  id: ID!
+  account: String!
+  actionType: String!
+  amount: BigInt!
+  averagePrice: BigInt!
+  collateral: BigInt!
+  createdAt: Int!
+  positionFee: BigInt!
+  fundingFee: BigInt!
+  borrowFee: BigInt!
+  tokenId: BigInt!
+  isLong:Boolean!
+  isPlus: Boolean!
+  isWin:Boolean!
+  markPrice: BigInt!
+  posId: BigInt!
+  positionType: String!
+  profitLoss: BigInt!
+  roi: BigInt!
+  tradeVolume: BigInt!
+  transactionHash: String!
+}

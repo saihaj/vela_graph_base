@@ -1,0 +1,328 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "version",
+        "type": "uint8"
+      }
+    ],
+    "name": "Initialized",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "posId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "isLong",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "internalType": "int256[3]",
+        "name": "pnlData",
+        "type": "int256[3]"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256[5]",
+        "name": "posData",
+        "type": "uint256[5]"
+      }
+    ],
+    "name": "LiquidatePosition",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "posId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "caller",
+        "type": "address"
+      }
+    ],
+    "name": "RegisterLiquidation",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract IPositionVault",
+        "name": "_positionVault",
+        "type": "address"
+      },
+      {
+        "internalType": "contract ISettingsManager",
+        "name": "_settingsManager",
+        "type": "address"
+      },
+      {
+        "internalType": "contract IVault",
+        "name": "_vault",
+        "type": "address"
+      },
+      {
+        "internalType": "contract IPriceManager",
+        "name": "_priceManager",
+        "type": "address"
+      },
+      {
+        "internalType": "contract IOperators",
+        "name": "_operators",
+        "type": "address"
+      }
+    ],
+    "name": "init",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "initialize",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_posId",
+        "type": "uint256"
+      }
+    ],
+    "name": "liquidatePosition",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "liquidateRegisterTime",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "liquidateRegistrant",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_posId",
+        "type": "uint256"
+      }
+    ],
+    "name": "registerLiquidatePosition",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_tokenId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "_isLong",
+        "type": "bool"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_size",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_averagePrice",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_lastPrice",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_lastIncreasedTime",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_accruedBorrowFee",
+        "type": "uint256"
+      },
+      {
+        "internalType": "int256",
+        "name": "_fundingIndex",
+        "type": "int256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_collateral",
+        "type": "uint256"
+      }
+    ],
+    "name": "validateLiquidation",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "isPositionLiquidatable",
+        "type": "bool"
+      },
+      {
+        "internalType": "int256",
+        "name": "pnl",
+        "type": "int256"
+      },
+      {
+        "internalType": "int256",
+        "name": "fundingFee",
+        "type": "int256"
+      },
+      {
+        "internalType": "int256",
+        "name": "borrowFee",
+        "type": "int256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_posId",
+        "type": "uint256"
+      }
+    ],
+    "name": "validateLiquidationWithPosid",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      },
+      {
+        "internalType": "int256",
+        "name": "",
+        "type": "int256"
+      },
+      {
+        "internalType": "int256",
+        "name": "",
+        "type": "int256"
+      },
+      {
+        "internalType": "int256",
+        "name": "",
+        "type": "int256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_posId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_price",
+        "type": "uint256"
+      }
+    ],
+    "name": "validateLiquidationWithPosidAndPrice",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      },
+      {
+        "internalType": "int256",
+        "name": "",
+        "type": "int256"
+      },
+      {
+        "internalType": "int256",
+        "name": "",
+        "type": "int256"
+      },
+      {
+        "internalType": "int256",
+        "name": "",
+        "type": "int256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]

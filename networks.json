@@ -1,0 +1,8 @@
+{
+  "arbitrum-one": {
+    "VaultUtils": {
+      "address": "0xDa1a7ea276fbdB16ebaBB5b38257b1D56B302E4a",
+      "startBlock": 56425513
+    }
+  }
+}

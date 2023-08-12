@@ -1,0 +1,1010 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "posId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "isPlus",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "collateral",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "size",
+        "type": "uint256"
+      }
+    ],
+    "name": "AddOrRemoveCollateral",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "posId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "err",
+        "type": "string"
+      }
+    ],
+    "name": "AddPositionExecutionError",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "posId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "isLong",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "internalType": "int256[3]",
+        "name": "pnlData",
+        "type": "int256[3]"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256[5]",
+        "name": "posData",
+        "type": "uint256[5]"
+      }
+    ],
+    "name": "ClosePosition",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "posId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "collateral",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "size",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "allowedPrice",
+        "type": "uint256"
+      }
+    ],
+    "name": "CreateAddPositionOrder",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "posId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "size",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "allowedPrice",
+        "type": "uint256"
+      }
+    ],
+    "name": "CreateDecreasePositionOrder",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "posId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "isLong",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "internalType": "int256[3]",
+        "name": "pnlData",
+        "type": "int256[3]"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256[5]",
+        "name": "posData",
+        "type": "uint256[5]"
+      }
+    ],
+    "name": "DecreasePosition",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "posId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "err",
+        "type": "string"
+      }
+    ],
+    "name": "DecreasePositionExecutionError",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "posId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "collateral",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "size",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "feeUsd",
+        "type": "uint256"
+      }
+    ],
+    "name": "ExecuteAddPositionOrder",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "posId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "size",
+        "type": "uint256"
+      }
+    ],
+    "name": "ExecuteDecreasePositionOrder",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "posId",
+        "type": "uint256"
+      }
+    ],
+    "name": "ExecuteRemoveCollateral",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "posId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "err",
+        "type": "string"
+      }
+    ],
+    "name": "ExecuteRemoveCollateralError",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "posId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "isLong",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256[5]",
+        "name": "posData",
+        "type": "uint256[5]"
+      }
+    ],
+    "name": "IncreasePosition",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "version",
+        "type": "uint8"
+      }
+    ],
+    "name": "Initialized",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "posId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "err",
+        "type": "string"
+      }
+    ],
+    "name": "MarketOrderExecutionError",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_account",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_posId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "isPlus",
+        "type": "bool"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "addOrRemoveCollateral",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_account",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_posId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_collateralDelta",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_sizeDelta",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_allowedPrice",
+        "type": "uint256"
+      }
+    ],
+    "name": "createAddPositionOrder",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_posId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "_account",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_sizeDelta",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_allowedPrice",
+        "type": "uint256"
+      }
+    ],
+    "name": "createDecreasePositionOrder",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_posId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_price",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_sizeDelta",
+        "type": "uint256"
+      }
+    ],
+    "name": "decreasePosition",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_posId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_price",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_sizeDelta",
+        "type": "uint256"
+      }
+    ],
+    "name": "decreasePositionByOrderVault",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_posId",
+        "type": "uint256"
+      }
+    ],
+    "name": "executeAddPositionOrder",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_posId",
+        "type": "uint256"
+      }
+    ],
+    "name": "executeDecreasePositionOrder",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_posId",
+        "type": "uint256"
+      }
+    ],
+    "name": "executeOpenMarketOrder",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "numOfOrders",
+        "type": "uint256"
+      }
+    ],
+    "name": "executeOrders",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_posId",
+        "type": "uint256"
+      }
+    ],
+    "name": "executeRemoveCollateral",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getNumOfUnexecuted",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_posId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getPaidFees",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "paidPositionFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "paidBorrowFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "int256",
+            "name": "paidFundingFee",
+            "type": "int256"
+          }
+        ],
+        "internalType": "struct PaidFees",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_posId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getPosition",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "refer",
+            "type": "address"
+          },
+          {
+            "internalType": "bool",
+            "name": "isLong",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "tokenId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "averagePrice",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "collateral",
+            "type": "uint256"
+          },
+          {
+            "internalType": "int256",
+            "name": "fundingIndex",
+            "type": "int256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "lastIncreasedTime",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "size",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "accruedBorrowFee",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct Position",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_account",
+        "type": "address"
+      }
+    ],
+    "name": "getUserOpenOrderIds",
+    "outputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "",
+        "type": "uint256[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_account",
+        "type": "address"
+      }
+    ],
+    "name": "getUserPositionIds",
+    "outputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "",
+        "type": "uint256[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getVaultUSDBalance",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_posId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "_account",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_tokenId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "_isLong",
+        "type": "bool"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_price",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_collateralDelta",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_sizeDelta",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_fee",
+        "type": "uint256"
+      }
+    ],
+    "name": "increasePosition",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract IOrderVault",
+        "name": "_orderVault",
+        "type": "address"
+      },
+      {
+        "internalType": "contract ILiquidateVault",
+        "name": "_liquidateVault",
+        "type": "address"
+      },
+      {
+        "internalType": "contract ISettingsManager",
+        "name": "_settingsManager",
+        "type": "address"
+      }
+    ],
+    "name": "init",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_vault",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_priceManager",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_operators",
+        "type": "address"
+      }
+    ],
+    "name": "initialize",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "lastPosId",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_account",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_tokenId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "_isLong",
+        "type": "bool"
+      },
+      {
+        "internalType": "enum OrderType",
+        "name": "_orderType",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "_params",
+        "type": "uint256[]"
+      },
+      {
+        "internalType": "address",
+        "name": "_refer",
+        "type": "address"
+      }
+    ],
+    "name": "newPositionOrder",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "queueIndex",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "queuePosIds",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "removeCollateralOrders",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_user",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_posId",
+        "type": "uint256"
+      }
+    ],
+    "name": "removeUserAlivePosition",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_user",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_posId",
+        "type": "uint256"
+      }
+    ],
+    "name": "removeUserOpenOrder",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_posId",
+        "type": "uint256"
+      }
+    ],
+    "name": "selfExecuteDecreasePositionOrder",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]
